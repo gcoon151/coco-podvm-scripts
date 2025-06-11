@@ -224,14 +224,16 @@ spec:
         value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
       - name: CACHI2_ARTIFACT
         value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
+      - name: PLATFORM
+        value: "linux-root/amd64"
       runAfter:
       - prefetch-dependencies
       taskRef:
         params:
         - name: name
-          value: buildah-oci-ta
+          value: build-dm-verity-oci-ta
         - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-buildah-oci-ta:0.4@sha256:09f012a6c726c66922703f28846a3cfa196e8a391729192cda0d8f8a757b6ff5
+          value: quay.io/littlejawa/tekton-catalog/task-build-dm-verity-oci-ta:latest
         - name: kind
           value: task
         resolver: bundles
