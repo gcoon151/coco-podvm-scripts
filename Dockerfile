@@ -11,6 +11,10 @@ RUN if [[ -n "${ACTIVATION_KEY}" && -n "${ORG_ID}" ]]; then \
     rm -f /etc/rhsm-host && rm -f /etc/pki/entitlement-host; \
     subscription-manager register --org=${ORG_ID} --activationkey=${ACTIVATION_KEY}; \
     fi
+RUN if [[ -e "/activation-key/activation-key" ]]; then \
+    rm -f /etc/rhsm-host && rm -f /etc/pki/entitlement-host; \
+    subscription-manager register --org=$(cat /activation-key/org) --activationkey=$(cat /activation-key/activation-key); \
+    fi
 
 RUN dnf -y update
 
