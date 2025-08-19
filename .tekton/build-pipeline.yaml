@@ -223,8 +223,10 @@ spec:
         resolver: bundles
     - name: apply-tags
       params:
-        - name: IMAGE
-          value: $(params.output-image)
+        - name: IMAGE_URL
+          value: $(tasks.build-image-index.results.IMAGE_URL)
+        - name: IMAGE_DIGEST
+          value: $(tasks.build-image-index.results.IMAGE_DIGEST)
         - name: ADDITIONAL_TAGS
           value:
             - $(params.additional-tags[*])
@@ -269,6 +271,8 @@ spec:
       params:
         - name: image-url
           value: $(tasks.build-image-index.results.IMAGE_URL)
+        - name: image-digest
+          value: $(tasks.build-image-index.results.IMAGE_DIGEST)
         - name: SOURCE_ARTIFACT
           value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
         - name: CACHI2_ARTIFACT
