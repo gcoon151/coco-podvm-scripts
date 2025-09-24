@@ -294,9 +294,6 @@ function create_image_gallery() {
         --gallery-name "${IMAGE_GALLERY_NAME}" ||
         error_exit "Failed to create Azure image gallery"
 
-    # Update peer-pods-cm configmap with the gallery name
-    add_image_gallery_annotation_to_peer_pods_cm
-
     echo "Azure image gallery created successfully"
 
 }
